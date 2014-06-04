@@ -66,18 +66,27 @@ def case(nx, ndrifters):
 # Change number of drifters for fixed grid
 case(nx=10, ndrifters=2) # basic case
 case(nx=10, ndrifters=10)
+case(nx=10, ndrifters=50)
 case(nx=10, ndrifters=100)
+case(nx=10, ndrifters=500)
 case(nx=10, ndrifters=1000)
+case(nx=10, ndrifters=5000)
 case(nx=10, ndrifters=10000)
+case(nx=10, ndrifters=50000)
 case(nx=10, ndrifters=100000)
+case(nx=10, ndrifters=500000)
+case(nx=10, ndrifters=1000000)
 
-# # Change number of grid points in x direction for fixed number of drifters
-# case(nx=10, ndrifters=2)
-# case(nx=50, ndrifters=2)
-# case(nx=100, ndrifters=2)
-# case(nx=250, ndrifters=2)
-# case(nx=500, ndrifters=2)
-# case(nx=1000, ndrifters=2)
-# case(nx=5000, ndrifters=2)
-# case(nx=10000, ndrifters=2)
-
+# Change number of grid points in x direction for fixed number of drifters
+case(nx=50, ndrifters=2)
+case(nx=100, ndrifters=2)
+case(nx=500, ndrifters=2)
+case(nx=1000, ndrifters=2)
+case(nx=1500, ndrifters=2)
+case(nx=2000, ndrifters=2)
+case(nx=2500, ndrifters=2)
+case(nx=3000, ndrifters=2)
+case(nx=3500, ndrifters=2)
+case(nx=4000, ndrifters=2)
+case(nx=4500, ndrifters=2)
+case(nx=5000, ndrifters=2)

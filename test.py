@@ -10,6 +10,7 @@ import init
 from datetime import datetime, timedelta
 from tracpy.tracpy_class import Tracpy
 import os
+import time
 
 def init(rootdir, ndrifters):
     '''
@@ -75,7 +76,10 @@ def run(rootdir, ndrifters):
     date = datetime(2013, 12, 19, 0)
 
     # Simulation initialization
+    itime = time.time()
     tp, x0, y0 = init(rootdir, ndrifters)
+
+    print '\nAdditional time for initialization:%4.4f\n' % (time.time() - itime)
 
     xp, yp, zp, t, T0, U, V = tracpy.run.run(tp, date, x0, y0)
 
