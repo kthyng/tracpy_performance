@@ -56,16 +56,17 @@ def plot(times, nx, ndrifters):
 
     fig = plt.figure(figsize=(18,6))
     ax = fig.add_subplot(1,2,1)
-    ax.loglog(nx[ind][isort]*29, times[ind,0][isort], '-', color='r', lw=3)
-    ax.loglog(nx[ind][isort]*29, times[ind,1][isort], '-', color='orange', lw=2, alpha=0.5)
+    ax.loglog(nx[ind][isort]*29, times[ind,0][isort], '-', color='r', lw=2, alpha=0.5)
+    ax.loglog(nx[ind][isort]*29, times[ind,1][isort], '-', color='orange', lw=3, alpha=1.0)
     ax.loglog(nx[ind][isort]*29, times[ind,2][isort], '-', color='yellow', lw=2, alpha=0.5)
     ax.loglog(nx[ind][isort]*29, times[ind,3][isort], '-', color='green', lw=2, alpha=0.5)
     ax.loglog(nx[ind][isort]*29, times[ind,4][isort], '-', color='blue', lw=2, alpha=0.5)
     ax.loglog(nx[ind][isort]*29, times[ind,5][isort], '-', color='purple', lw=2, alpha=0.5)
     ax.set_xlabel('Number of grid cells')
-    ax.set_title('Effect of changing grid resolution')
+    ax.set_title('Effect of changing number of grid cells')
     ax.autoscale(axis='x', tight=True)
     ax.set_ylabel('Time [s]')
+    ylims = ax.get_ylim()
 
     ## Plot simulations for which nx==10 and number of drifters changes
 
@@ -82,6 +83,7 @@ def plot(times, nx, ndrifters):
     ax.set_xlabel('Number of drifters')
     ax.set_title('Effect of changing number of drifters')
     ax.autoscale(axis='x', tight=True)
+    ax.set_ylim(ylims)
     plt.setp(ax.get_yticklabels(), visible=False)
     plt.subplots_adjust(left=0.05, bottom=0.11, right=0.99, 
                         top=0.94, wspace=0.04, hspace=0.2)
