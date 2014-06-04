@@ -45,6 +45,14 @@ def run_case(rootdir, nx, ndrifters):
     test.run(rootdir, ndrifters)
 
 
+    ## Remove simulation run files to save space ##
+
+    print 'Deleting ocean simulation files...'
+
+    outputloc = os.path.join(rootdir, 'ocean_his_0001.nc')
+    os.system('rm ' + outputloc)
+
+
 
 if __name__ == '__main__':
     import argparse
