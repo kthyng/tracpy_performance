@@ -38,7 +38,7 @@ def write_shell(nx, ndrifters):
 
     shfile = os.fdopen(os.open('%s/test.sh' % rootdir, os.O_WRONLY | os.O_CREAT, 0o777), 'w')
     shfile.writelines(preamble)
-    shfile.write('python2.7 ./run_case.py --rootdir %s --nx %i --ndrifters %i  > %s/log.txt & \n' % (rootdir, nx, ndrifters, rootdir))
+    shfile.write('python2.7 ./run_case.py --rootdir %s --nx %i --ndrifters %i  > %s/log.txt \n' % (rootdir, nx, ndrifters, rootdir))
     shfile.close()
 
     return rootdir
@@ -90,3 +90,7 @@ case(nx=3500, ndrifters=2)
 case(nx=4000, ndrifters=2)
 case(nx=4500, ndrifters=2)
 case(nx=5000, ndrifters=2)
+case(nx=5500, ndrifters=2)
+case(nx=6000, ndrifters=2)
+case(nx=6500, ndrifters=2)
+case(nx=7000, ndrifters=2)
