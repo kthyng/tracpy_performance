@@ -60,9 +60,6 @@ def init(rootdir, ndrifters):
                 N=N, ff=ff, ah=ah, av=av, doturb=doturb, do3d=do3d, z0=z0, zpar=zpar, time_units=time_units,
                 savell=False, doperiodic=0)
 
-    # force grid reading
-    tp._readgrid()
-
     # one particle starting position times however many drifters
     x0 = np.ones(ndrifters)*12000.
     y0 = np.ones(ndrifters)*31000.
