@@ -58,7 +58,7 @@ def init(rootdir, ndrifters):
     # Initialize Tracpy class
     tp = Tracpy(currents_filename, grid_filename, name=name, tseas=tseas, ndays=ndays, nsteps=nsteps,
                 N=N, ff=ff, ah=ah, av=av, doturb=doturb, do3d=do3d, z0=z0, zpar=zpar, time_units=time_units,
-                savell=False, doperiodic=0)
+                savell=False, doperiodic=0, usespherical=False)
 
     # one particle starting position times however many drifters
     x0 = np.ones(ndrifters)*12000.
