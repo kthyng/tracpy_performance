@@ -28,11 +28,16 @@ def read_data():
  
         # read in times for different parts of simulation
         times[i,0] = log.split(':')[1][:6] # Time for initialization
-        times[i,1] = log.expandtabs().splitlines()[-6][48:54] # 1: Preparing for simulation
-        times[i,2] = log.expandtabs().splitlines()[-5][48:54] # 2: Preparing for model step
-        times[i,3] = log.expandtabs().splitlines()[-4][48:54] # 3: Stepping, using TRACMASS
-        times[i,4] = log.expandtabs().splitlines()[-3][48:54] # 4: Processing after model step
-        times[i,5] = log.expandtabs().splitlines()[-2][48:54] # 5: Processing after simulation
+        times[i,1] = log.split('1: Preparing for simulation    \t\t')[1][:6]
+        times[i,2] = log.split('2: Preparing for model step    \t\t')[1][:6]
+        times[i,3] = log.split('3: Stepping, using TRACMASS    \t\t')[1][:6]
+        times[i,4] = log.split('4: Processing after model step \t\t')[1][:6]
+        times[i,5] = log.split('5: Processing after simulation \t\t')[1][:6]
+        # times[i,1] = log.expandtabs().splitlines()[-6][48:54] # 1: Preparing for simulation
+        # times[i,2] = log.expandtabs().splitlines()[-5][48:54] # 2: Preparing for model step
+        # times[i,3] = log.expandtabs().splitlines()[-4][48:54] # 3: Stepping, using TRACMASS
+        # times[i,4] = log.expandtabs().splitlines()[-3][48:54] # 4: Processing after model step
+        # times[i,5] = log.expandtabs().splitlines()[-2][48:54] # 5: Processing after simulation
 
         # save order of simulation properties
         nx[i] = int(testdir.split('nx')[1].split('_')[1])
