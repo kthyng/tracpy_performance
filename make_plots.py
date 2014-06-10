@@ -56,17 +56,20 @@ def plot(times, nx, ndrifters):
 
     matplotlib.rcParams.update({'font.size': 16})#,'font.weight': 'bold'})
 
+    total = times.sum(axis=1)
+
     ind = ndrifters==2
     isort = np.argsort(nx[ind]) # indices that sort in order
 
     fig = plt.figure(figsize=(18,6))
     ax = fig.add_subplot(1,2,1)
-    ax.loglog(nx[ind][isort]*29, times[ind,0][isort], '-', color='r', lw=2, alpha=0.5)
-    ax.loglog(nx[ind][isort]*29, times[ind,1][isort], '-', color='orange', lw=3, alpha=1.0)
-    ax.loglog(nx[ind][isort]*29, times[ind,2][isort], '-', color='yellow', lw=2, alpha=0.5)
-    ax.loglog(nx[ind][isort]*29, times[ind,3][isort], '-', color='green', lw=2, alpha=0.5)
-    ax.loglog(nx[ind][isort]*29, times[ind,4][isort], '-', color='blue', lw=2, alpha=0.5)
-    ax.loglog(nx[ind][isort]*29, times[ind,5][isort], '-', color='purple', lw=2, alpha=0.5)
+    ax.stackplot(nx[ind][isort]*29, times[ind,0][isort]/total[ind][isort], 
+                times[ind,1][isort]/total[ind][isort],
+                times[ind,2][isort]/total[ind][isort], 
+                times[ind,3][isort]/total[ind][isort], 
+                times[ind,4][isort]/total[ind][isort], 
+                times[ind,5][isort]/total[ind][isort], 
+                colors=['red', 'orange', 'yellow', 'green', 'blue', 'purple'])
     ax.set_xlabel('Number of grid cells')
     ax.set_title('Effect of changing number of grid cells')
     ax.autoscale(axis='x', tight=True)
@@ -79,18 +82,19 @@ def plot(times, nx, ndrifters):
     isort = np.argsort(ndrifters[ind]) # indices that sort in order
 
     ax = fig.add_subplot(1,2,2)
-    ax.loglog(ndrifters[ind][isort], times[ind,0][isort], '-', color='r', lw=2, alpha=0.5)
-    ax.loglog(ndrifters[ind][isort], times[ind,1][isort], '-', color='orange', lw=3, alpha=1.0)
-    ax.loglog(ndrifters[ind][isort], times[ind,2][isort], '-', color='yellow', lw=2, alpha=0.5)
-    ax.loglog(ndrifters[ind][isort], times[ind,3][isort], '-', color='green', lw=3, alpha=1.0)
-    ax.loglog(ndrifters[ind][isort], times[ind,4][isort], '-', color='blue', lw=3, alpha=0.5)
-    ax.loglog(ndrifters[ind][isort], times[ind,5][isort], '-', color='purple', lw=3, alpha=0.5)
+    ax.stackplot(ndrifters[ind][isort], times[ind,0][isort]/total[ind][isort], 
+                times[ind,1][isort]/total[ind][isort],
+                times[ind,2][isort]/total[ind][isort], 
+                times[ind,3][isort]/total[ind][isort], 
+                times[ind,4][isort]/total[ind][isort], 
+                times[ind,5][isort]/total[ind][isort], 
+                colors=['red', 'orange', 'yellow', 'green', 'blue', 'purple'])
     ax.set_xlabel('Number of drifters')
     ax.set_title('Effect of changing number of drifters')
     ax.autoscale(axis='x', tight=True)
     ax.set_ylim(ylims)
     plt.setp(ax.get_yticklabels(), visible=False)
-    plt.subplots_adjust(left=0.05, bottom=0.11, right=0.99, 
+    plt.subplots_adjust(left=0.05, bottom=0.11, right=0.97, 
                         top=0.94, wspace=0.04, hspace=0.2)
 
 
@@ -102,7 +106,58 @@ def plot(times, nx, ndrifters):
     ax.text(0.05, 0.75, 'After step', color='b', transform=ax.transAxes)
     ax.text(0.05, 0.70, 'After run', color='purple', transform=ax.transAxes)
 
-    fig.savefig('figures/comparison.pdf')
+    fig.savefig('figures/comparison_relative.pdf')
+
+
+    ind = ndrifters==2
+    isort = np.argsort(nx[ind]) # indices that sort in order
+
+    fig = plt.figure(figsize=(18,6))
+    ax = fig.add_subplot(1,2,1)
+    ax.stackplot(nx[ind][isort]*29, times[ind,0][isort], 
+                times[ind,1][isort],
+                times[ind,2][isort], 
+                times[ind,3][isort], 
+                times[ind,4][isort], 
+                times[ind,5][isort], 
+                colors=['red', 'orange', 'yellow', 'green', 'blue', 'purple'])
+    ax.set_xlabel('Number of grid cells')
+    ax.set_title('Effect of changing number of grid cells')
+    ax.autoscale(axis='x', tight=True)
+    ax.set_ylabel('Time [s]')
+    ylims = ax.get_ylim()
+
+    ## Plot simulations for which nx==10 and number of drifters changes
+
+    ind = nx==10
+    isort = np.argsort(ndrifters[ind]) # indices that sort in order
+
+    ax = fig.add_subplot(1,2,2)
+    ax.stackplot(ndrifters[ind][isort], times[ind,0][isort], 
+                times[ind,1][isort],
+                times[ind,2][isort], 
+                times[ind,3][isort], 
+                times[ind,4][isort], 
+                times[ind,5][isort], 
+                colors=['red', 'orange', 'yellow', 'green', 'blue', 'purple'])
+    ax.set_xlabel('Number of drifters')
+    ax.set_title('Effect of changing number of drifters')
+    ax.autoscale(axis='x', tight=True)
+    # ax.set_ylim(ylims)
+    # plt.setp(ax.get_yticklabels(), visible=False)
+    plt.subplots_adjust(left=0.05, bottom=0.11, right=0.97, 
+                        top=0.94, wspace=0.06, hspace=0.2)
+
+
+    ## Overlay legend
+    ax.text(0.05, 0.95, 'Initialization', color='r', transform=ax.transAxes)
+    ax.text(0.05, 0.90, 'Preparing for run', color='orange', transform=ax.transAxes)
+    ax.text(0.05, 0.85, 'Preparing for step', color='y', transform=ax.transAxes)
+    ax.text(0.05, 0.80, 'Stepping', color='green', transform=ax.transAxes)
+    ax.text(0.05, 0.75, 'After step', color='b', transform=ax.transAxes)
+    ax.text(0.05, 0.70, 'After run', color='purple', transform=ax.transAxes)
+
+    fig.savefig('figures/comparison_absolute.pdf')
 
 
 times, nx, ndrifters = read_data()
