@@ -15,7 +15,7 @@ def read_data():
     '''
 
     # Use all available test cases
-    testdirs = glob(os.path.join('tests', '*'))
+    testdirs = glob(os.path.join('tests', 'test_*'))
     ntests = len(testdirs)
     times = np.empty((ntests, 6))
     nx = np.empty(ntests)
