@@ -58,7 +58,7 @@ def plot(times, nx, ndrifters):
 
     total = times.sum(axis=1)
 
-    ind = ndrifters==2
+    ind = ndrifters==5000
     isort = np.argsort(nx[ind]) # indices that sort in order
 
     fig = plt.figure(figsize=(18,6))
@@ -78,7 +78,7 @@ def plot(times, nx, ndrifters):
 
     ## Plot simulations for which nx==10 and number of drifters changes
 
-    ind = nx==10
+    ind = nx==3500
     isort = np.argsort(ndrifters[ind]) # indices that sort in order
 
     ax = fig.add_subplot(1,2,2)
@@ -109,7 +109,7 @@ def plot(times, nx, ndrifters):
     fig.savefig('figures/comparison_relative.pdf')
 
 
-    ind = ndrifters==2
+    ind = ndrifters==5000
     isort = np.argsort(nx[ind]) # indices that sort in order
 
     fig = plt.figure(figsize=(18,6))
@@ -129,7 +129,7 @@ def plot(times, nx, ndrifters):
 
     ## Plot simulations for which nx==10 and number of drifters changes
 
-    ind = nx==10
+    ind = nx==3500
     isort = np.argsort(ndrifters[ind]) # indices that sort in order
 
     ax = fig.add_subplot(1,2,2)
