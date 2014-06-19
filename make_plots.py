@@ -90,6 +90,7 @@ def plot(times, nx, ndrifters):
     ax.plot([0.02,0.05], [0.815,0.815], ':', lw=5, color='g', transform=ax.transAxes)
     ax.plot([0.02,0.05], [0.765,0.765], '--', lw=5, color='b', transform=ax.transAxes)
     ax.plot([0.02,0.05], [0.715,0.715], '-.', lw=5, color='purple', transform=ax.transAxes)
+    ax.set_ylim(ylims)
 
 
     ## Plot simulations for which nx==10 and number of drifters changes
